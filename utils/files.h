@@ -54,7 +54,7 @@ void body(char* filename, int test, double execution_time, double performance) {
 	 // Writes the data
 	 fprintf(
 		file,
-		"%i,%0.5f,%0.5f\n",
+		"%i,%f,%f\n",
 		test + 1, execution_time, performance
 	 );	 
 	 
@@ -65,8 +65,8 @@ void body(char* filename, int test, double execution_time, double performance) {
 
 void logging(int test, double execution_time, double performance) {
 	// Just for smart calls and reduce code
-	printf("Execution Time: %0.5f\n", execution_time);
-	printf("Performance: %0.5f\n", performance);
+	printf("Execution Time: %f\n", execution_time);
+	printf("Performance: %f\n", performance);
 	printf("Test: %i/10\n-------------------------------------\n", test + 1);
 	return;
 }

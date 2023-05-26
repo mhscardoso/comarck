@@ -17,11 +17,11 @@ void dgemm(int, double*, double*, double*);
 
 int main(void) {
 	// Register
-	char* filename = "out_O0.csv";
+	char* filename = "out.csv";
 	printf("All results will be written in %s\n\n", filename);
 	
 	// Header of csv file
-	// header(filename);
+	header(filename);
 	
 	// Seed as the actual time
 	srand((unsigned int) time(NULL));
@@ -41,7 +41,7 @@ int main(void) {
 	
 	
 	// -------------- MAIN --------------
-	int tests_made = 8;
+	int tests_made = 0;
 	while (tests_made < TESTS) {
 		
 		// -------------------------- //
