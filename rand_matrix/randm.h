@@ -7,9 +7,9 @@
 
 void empty_matrix(int order, double* A) {
 	/*
-	* Receives a random matrix (by malloc)
-	* and turn all its elements to zero.
-	*/
+	 * Receives a random matrix (by malloc)
+	 * and turn all its elements to zero.
+	 */
 	
 	int order_squared = order * order;
 	
@@ -20,9 +20,9 @@ void empty_matrix(int order, double* A) {
 
 void random_matrix(int order, double* A) {
 	/*
-	* Given a matrix, randomize all its
-	* entries with rand() function.
-	*/
+	 * Given a matrix, randomize all its
+	 * entries with rand() function.
+	 */
 	
 	int order_squared = order * order;
 	for (int i = 0; i < order_squared; i++)
@@ -33,10 +33,10 @@ void random_matrix(int order, double* A) {
 
 double* create_matrix(int order) {
 	/*
-	* Generate a random matrix with
-	* double numbers.
-	* Matrix n x n, n = order
-	*/
+	 * Generate a random matrix with
+	 * double numbers.
+	 * Matrix n x n, n = order
+	 */
 	
 	int order_squared = order * order;
 	

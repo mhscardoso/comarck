@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-#include "rand_matrix/randm.h"
+#include "../rand_matrix/randm.h"
+#include "../utils/files.h"
 
 #define ORDER 8192
 #define TESTS 10
@@ -11,26 +12,16 @@ double A[ORDER * ORDER];
 double B[ORDER * ORDER];
 double C[ORDER * ORDER];
 
+// Prototyped function written bellow main()
 void dgemm(int, double*, double*, double*);
 
 int main(void) {
 	// Register
-	char* filename = "out_O1.csv";
+	char* filename = "out_O0.csv";
 	printf("All results will be written in %s\n\n", filename);
 	
-	// Header of output file
-	FILE *file = fopen(filename, "w");		
-	if (file == NULL) {
-		fprintf(stderr, "Error in open file %s\n", filename);
-		return EXIT_FAILURE;
-	}	
-	// Print result in output.txt
-	fprintf(
-		file,
-		"Test,Execution,Performance\n"
-	);	
-	fclose(file);	
-	
+	// Header of csv file
+	// header(filename);
 	
 	// Seed as the actual time
 	srand((unsigned int) time(NULL));
@@ -50,7 +41,7 @@ int main(void) {
 	
 	
 	// -------------- MAIN --------------
-	int tests_made = 0;
+	int tests_made = 8;
 	while (tests_made < TESTS) {
 		
 		// -------------------------- //
@@ -66,28 +57,11 @@ int main(void) {
 		double execution_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
 		double performance = 1 / execution_time;
 		
-		printf("Execution Time: %f\n", execution_time);
-		printf("Performance: %f\n", performance);
-		printf("Test: %i/10\n-------------------------------------\n", tests_made + 1);
+		// Output in terminal for checking
+		logging(tests_made, execution_time, performance);		
 		
-		
-		
-		// ---------------- OUTPUT ----------------
-		FILE *file = fopen(filename, "a");
-		
-		if (file == NULL) {
-			fprintf(stderr, "Error in open file %s\n", filename);
-			return EXIT_FAILURE;
-		}
-		
-		// Print result in output.txt
-		fprintf(
-			file,
-			"%i,%f,%f\n", tests_made + 1, execution_time, performance
-		);
-		
-		fclose(file);		
-		// ---------------- OUTPUT ----------------
+		// Writing the util csv data
+		body(filename, tests_made, execution_time, performance);
 		
 		// Randomizing matrices again
 		random_matrix(ORDER, A);
@@ -99,8 +73,7 @@ int main(void) {
 		tests_made++;
 	}
 	// -------------- MAIN --------------
-	
-	
+		
 	return EXIT_SUCCESS;
 }
 
